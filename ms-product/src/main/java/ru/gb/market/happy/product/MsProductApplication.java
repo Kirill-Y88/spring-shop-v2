@@ -3,7 +3,7 @@ package ru.gb.market.happy.product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "ru.gb.market.happy")
 public class MsProductApplication {
 
     public static void main(String[] args) {
