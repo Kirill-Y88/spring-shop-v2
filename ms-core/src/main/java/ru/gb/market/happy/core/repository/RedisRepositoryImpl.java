@@ -11,6 +11,7 @@ import ru.gb.market.happy.core.model.TokenRedis;
 
 
 import javax.annotation.PostConstruct;
+import java.time.Duration;
 
 
 @Repository
@@ -33,7 +34,8 @@ public class RedisRepositoryImpl implements RedisRepository {
     }
 
     public void addToken(TokenRedis tokenRedis) {
-        hashOperations.put(tokenRedis.getTokenRedis(), tokenRedis.getTokenRedis(), tokenRedis.getTtl());
+      //  hashOperations.put(tokenRedis.getTokenRedis(), tokenRedis.getTokenRedis(), tokenRedis.getTtl());
+        redisTemplate.opsForValue().set(tokenRedis.getTokenRedis(),tokenRedis.getTokenRedis(), Duration.ofSeconds(15, 0));
     }
 
     //через листы как то не очень получилось

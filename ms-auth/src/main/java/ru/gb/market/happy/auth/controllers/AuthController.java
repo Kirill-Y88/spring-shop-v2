@@ -61,7 +61,7 @@ public class AuthController {
     public String logout (HttpServletRequest httpServletRequest){
         //Очеь удивлен что можно вставить в атрибуты метода весь запрос и просто продолжить работать с ним..
         String authorizationHeadertoken = httpServletRequest.getHeader("Authorization");
-        redisRepository.addToken(new TokenRedis(authorizationHeadertoken, 100L));
+        redisRepository.addToken(new TokenRedis(authorizationHeadertoken, 10000L));
        // redisRepository.add(authorizationHeadertoken);
         System.out.println(authorizationHeadertoken);
         return authorizationHeadertoken;
