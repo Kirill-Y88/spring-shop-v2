@@ -3,6 +3,7 @@ package ru.gb.market.happy.product.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,6 +40,7 @@ public class ProductController {
 
         return productService.findAll(ProductSpecifications.build(params), page, 4);
     }
+
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}")
