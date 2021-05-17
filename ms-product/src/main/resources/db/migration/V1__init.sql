@@ -8,12 +8,12 @@ create table products
 );
 
 insert into products (title, price)
-values ('Bread', 24),
-       ('Milk', 65),
-       ('Cheese', 320),
-       ('Cheese2', 322),
-       ('Cheese3', 323),
-       ('Cheese4', 324),
+values ('Bread', 10),
+       ('Milk', 20),
+       ('Cheese', 30),
+       ('Bear', 40),
+       ('Horse', 500),
+       ('Pen', 600),
        ('Cheese5', 325),
        ('Cheese6', 326),
        ('Cheese7', 327),

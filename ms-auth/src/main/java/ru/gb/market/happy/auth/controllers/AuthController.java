@@ -1,15 +1,10 @@
 package ru.gb.market.happy.auth.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.gb.market.happy.auth.entities.User;
 import ru.gb.market.happy.auth.services.UserService;
-import ru.gb.market.happy.core.filters.JWTAuthenticationFilter;
 import ru.gb.market.happy.core.interfaces.ITokenService;
 import ru.gb.market.happy.core.model.TokenRedis;
 import ru.gb.market.happy.core.model.UserInfo;
@@ -17,11 +12,17 @@ import ru.gb.market.happy.core.model.dto.AuthRequestDto;
 import ru.gb.market.happy.core.model.dto.AuthResponseDto;
 import ru.gb.market.happy.core.model.dto.SignUpRequestDto;
 import ru.gb.market.happy.core.repository.RedisRepository;
+import ru.gb.market.happy.router.feignclients.ProductFeignClient;
+
 
 import javax.servlet.http.HttpServletRequest;
 
+
 @RestController
 public class AuthController {
+
+    @Autowired
+    private ProductFeignClient productFeignClient;
 
     @Autowired
     private UserService userService;
@@ -32,6 +33,10 @@ public class AuthController {
     @Autowired
     private RedisRepository redisRepository;
 
+    @RequestMapping("/helloproduct")
+    public String hello(){
+      return   productFeignClient.hello();
+    }
 
     @PostMapping("/signup")
     public String signUp(@RequestBody SignUpRequestDto signUpRequest) {
