@@ -15,6 +15,7 @@
 
 
     <dependencies>
+
         <dependency>
             <groupId>ru.gb.market.happy</groupId>
             <artifactId>ms-core</artifactId>

@@ -28,7 +28,9 @@ public class OrderService {
     private OrderItemRepository orderItemRepository;
 
     //почему не инжектится через @Autowired - почему?
-    private final ModelMapper modelMapper;
+    //private final ModelMapper modelMapper;
+    @Autowired
+    private ModelMapper modelMapper;
 
 
     public List<OrderDto> findAllOrdersByUserId (Long id){
