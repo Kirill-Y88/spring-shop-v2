@@ -35,6 +35,13 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
+        //Проверка наличия токена в Redis
+        if(tokenService.findRedisToken(authorizationHeader)!=null){
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+            System.out.println("authorizationHeader: " + authorizationHeader);
+            System.out.println(" найденный токен " + tokenService.findRedisToken(authorizationHeader));
+            return;
+        }
 
         UsernamePasswordAuthenticationToken authenticationToken = createToken(authorizationHeader);
 

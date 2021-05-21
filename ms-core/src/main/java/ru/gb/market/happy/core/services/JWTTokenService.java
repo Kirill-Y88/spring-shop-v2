@@ -5,9 +5,11 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gb.market.happy.core.interfaces.ITokenService;
 import ru.gb.market.happy.core.model.UserInfo;
+import ru.gb.market.happy.core.repository.RedisRepository;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -15,6 +17,9 @@ import java.util.Date;
 
 @Service
 public class JWTTokenService implements ITokenService {
+
+    @Autowired
+    RedisRepository redisRepository;
 
     private final String JWT_SECRET = "3b2648762a13d3f6be076edb7f70fa391e83049e1eaef30448eecc4effd31e74f7eaa092196868d677986ab5f12afd579a894d0daa0716da1d72c443a539976e";
 
@@ -55,4 +60,11 @@ public class JWTTokenService implements ITokenService {
                 .role(role)
                 .build();
     }
+
+
+    public String findRedisToken(String redistoken){
+        return redisRepository.findRedisToken(redistoken);
+    }
+
+
 }
