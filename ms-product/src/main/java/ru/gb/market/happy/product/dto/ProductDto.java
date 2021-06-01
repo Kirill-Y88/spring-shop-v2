@@ -2,7 +2,6 @@ package ru.gb.market.happy.product.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.gb.market.happy.product.model.Product;
 
 @Data
 @NoArgsConstructor

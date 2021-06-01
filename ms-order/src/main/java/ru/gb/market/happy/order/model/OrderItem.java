@@ -29,11 +29,14 @@ public class OrderItem {
     @Column(name = "product_title")
     private String productTitle;
 
+    @Column(name = "price_per_product")
+    private int pricePerProduct;
+
     @Column(name = "price")
-    private Long price;
+    private int price;
 
     @Column(name = "quantity")
-    private Long quantity;
+    private int quantity;
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -43,6 +46,11 @@ public class OrderItem {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-
+    public OrderItem(CartItem cartItem) {
+        this.productId = cartItem.getProductId();
+        this.quantity = cartItem.getQuantity();
+        this.pricePerProduct = cartItem.getPricePerProduct();
+        this.price = cartItem.getPrice();
+    }
 
 }

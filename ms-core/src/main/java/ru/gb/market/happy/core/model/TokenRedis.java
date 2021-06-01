@@ -1,7 +1,6 @@
 package ru.gb.market.happy.core.model;
 
 import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.TimeToLive;
 
 import java.io.Serializable;
 
@@ -10,8 +9,6 @@ public class TokenRedis implements Serializable {
 
     private String tokenRedis;
 
-    //TTL не получилось включить
-   // @TimeToLive
     private  Long ttl;
 
     public TokenRedis(String tokenRedis, Long ttl) {

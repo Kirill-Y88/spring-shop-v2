@@ -20,11 +20,9 @@ create table user_table
        /* constraint user_table_role_table_id_fk*/
            foreign key (role_id) references role_table (id)
 );
-insert into user_table values (1, 'bill', '
-$2y$08$QRzBWXqvPBqxET2/RZYJwO2BFT01AYM/LF3EQH5tApH64gnm/f7XW
-', 1);
+insert into user_table values
+(1, 'alan', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 1),
+(2, 'dilan', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 2);
 
-/*create
-unique index user_table_login_uindex
-    on user_table (login);*/
+
 

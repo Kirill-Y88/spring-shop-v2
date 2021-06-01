@@ -33,11 +33,6 @@ public class AuthController {
     @Autowired
     private RedisRepository redisRepository;
 
-    @RequestMapping("/helloproduct")
-    public String hello(){
-      return   productFeignClient.hello();
-    }
-
     @PostMapping("/signup")
     public String signUp(@RequestBody SignUpRequestDto signUpRequest) {
         User user = new User();

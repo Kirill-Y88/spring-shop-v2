@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-//import ru.gb.market.happy.product.dto.ProductDto;
 import ru.gb.market.happy.product.model.Product;
 import ru.gb.market.happy.product.repositories.ProductRepository;
 import ru.gb.market.happy.router.dto.ProductDto;
@@ -21,8 +20,8 @@ public class ProductService {
 
     private final ModelMapper modelMapper;
 
-    public Optional<Product> findProductById(Long id) {
-        return productRepository.findById(id);
+    public Optional<ProductDto> findProductById(Long id) {
+        return productRepository.findById(id).map(this::toDto);
     }
 
     public Optional<ProductDto> findProductDtoById(Long id) {
@@ -33,8 +32,8 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page - 1, pageSize)).map(this::toDto);
     }
 
-    public Product saveOrUpdate(Product product) {
-        return productRepository.save(product);
+    public ProductDto saveOrUpdate(ProductDto product) throws ParseException {
+        return toDto(productRepository.save(toEntity(product)));
     }
 
     public void deleteById(Long id) {

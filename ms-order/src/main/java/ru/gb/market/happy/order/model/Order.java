@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,7 +29,7 @@ public class Order {
     private List<OrderItem> orderItemList;
 
     @Column(name = "price")
-    private Long price;
+    private int price;
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -38,5 +39,15 @@ public class Order {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    public Order(Cart cart, Long userId) {
+        this.orderItemList = new ArrayList<>();
+        this.userId = userId;
+        this.price = cart.getPrice();
+        for (CartItem ci : cart.getItems()) {
+            OrderItem oi = new OrderItem(ci);
+            oi.setOrderId(this);
+            this.orderItemList.add(oi);
+        }
+    }
 
 }

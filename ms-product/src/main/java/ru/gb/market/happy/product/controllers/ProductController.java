@@ -1,12 +1,8 @@
 package ru.gb.market.happy.product.controllers;
 
-import com.netflix.discovery.EurekaClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.gb.market.happy.core.exceptions.MessageError;
 import ru.gb.market.happy.router.dto.OrderItemDto;
 import ru.gb.market.happy.router.dto.ProductDto;
-import ru.gb.market.happy.product.model.Product;
 import ru.gb.market.happy.product.repositories.specifications.ProductSpecifications;
 import ru.gb.market.happy.product.services.ProductService;
 import ru.gb.market.happy.router.feignclients.OrderFeignClient;
-import ru.gb.market.happy.router.feignclients.ProductFeignClient;
 
+
+import java.text.ParseException;
 import java.util.List;
 
 
@@ -38,10 +34,6 @@ public class ProductController {
 
     private final OrderFeignClient orderFeignClient;
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello Product";
-    }
 
     @RequestMapping("/getAllOrdersByProduct/{id}")
     public List<OrderItemDto> getAllOrdersByProductId(@PathVariable Long id){
@@ -61,7 +53,7 @@ public class ProductController {
     }
 
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    //@PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}")
     public ProductDto findProductById(@PathVariable Long id) {
         return productService.findProductDtoById(id).orElseThrow(() -> new MessageError());
@@ -69,13 +61,13 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product saveNewProduct(@RequestBody Product product) {
-        product.setId(null);
+    public ProductDto saveNewProduct(@RequestBody ProductDto product) throws ParseException {
+        //product.setId(null);
         return productService.saveOrUpdate(product);
     }
 
     @PutMapping
-    public Product updateProduct(@RequestBody Product product) {
+    public ProductDto updateProduct(@RequestBody ProductDto product) throws ParseException {
         return productService.saveOrUpdate(product);
     }
 

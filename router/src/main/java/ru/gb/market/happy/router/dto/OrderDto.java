@@ -17,7 +17,7 @@ public class OrderDto {
 
     private Long id;
     private Long userId;
-    private Long price;
+    private int price;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

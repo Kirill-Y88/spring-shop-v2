@@ -41,7 +41,7 @@ public class ServiceTest {
     Order order = new Order();
     order.setId(1L);
     order.setUserId(1L);
-    order.setPrice(100L);
+    order.setPrice(100);
 
     Mockito.doReturn(Optional.of(order)).when(orderRepository).findById(1L);
 
@@ -55,12 +55,12 @@ public class ServiceTest {
     Order order3 = new Order();
     order3.setId(1L);
     order3.setUserId(1L);
-    order3.setPrice(100L);
+    order3.setPrice(100);
 
     Order order2 = new Order();
     order2.setId(2L);
     order2.setUserId(4L);
-    order2.setPrice(200L);
+    order2.setPrice(200);
 
     List<Order> orderList = new ArrayList<>();
     orderList.add(order3);
